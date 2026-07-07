@@ -8,12 +8,33 @@ attendant une validation manuelle (revue visuelle).
 ## Installation
 
 ```bash
+./setup.sh
+source .venv/bin/activate
+```
+
+`setup.sh` crée un environnement virtuel (`.venv`), installe les dépendances,
+et vérifie que Chrome est bien installé. Ajoute `--dev` pour installer aussi
+les dépendances de test (`./setup.sh --dev`).
+
+Sans le script, une installation manuelle suffit aussi :
+
+```bash
 pip install -r requirements.txt
 ```
 
-Nécessite Google Chrome installé. Selenium 4 télécharge et gère automatiquement
-le chromedriver correspondant (Selenium Manager), aucune configuration
-supplémentaire n'est nécessaire.
+### À propos de chromedriver
+
+Nécessite Google Chrome installé. Selenium 4.6+ embarque **Selenium
+Manager** : il détecte la version de Chrome installée et télécharge/cache
+automatiquement le chromedriver correspondant au premier lancement — aucune
+installation ou gestion manuelle du driver n'est nécessaire.
+
+Le seul piège possible : si un chromedriver est déjà présent ailleurs dans le
+`PATH` (installé par un autre outil), Selenium peut l'utiliser à la place de
+celui géré automatiquement et planter avec une erreur du type
+`SessionNotCreatedException` si sa version ne correspond pas à celle de
+Chrome. `setup.sh` détecte ce cas et affiche un avertissement ; si ça arrive,
+retire ce chromedriver du `PATH` pour laisser Selenium Manager s'en occuper.
 
 ## Format de la liste d'URLs (YAML)
 
