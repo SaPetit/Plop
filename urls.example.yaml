@@ -1,0 +1,4 @@
+- url: https://example.com/page1
+  message: "Vérifier que le bouton principal est bleu"
+- url: https://example.com/page2
+  message: "Vérifier le layout en mobile"
