@@ -70,3 +70,16 @@ sur Entrée pour passer à la suivante.
 Si une URL échoue à charger, le script logue l'erreur (terminal, et dans le
 rapport HTML en mode screenshot) et continue avec l'URL suivante sans
 s'arrêter.
+
+## Tests
+
+```bash
+pip install -r requirements-dev.txt
+pytest -v
+```
+
+Les tests couvrent le parsing YAML, la génération du rapport HTML
+(échappement anti-XSS inclus) et la logique des modes screenshot/revue
+manuelle, via un faux driver — ils ne lancent pas de vrai navigateur. Une CI
+GitHub Actions (`.github/workflows/tests.yml`) exécute cette suite sur
+Python 3.10/3.11/3.12 à chaque push/PR sur `main`.
